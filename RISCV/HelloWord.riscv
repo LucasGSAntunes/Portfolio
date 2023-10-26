@@ -1,0 +1,13 @@
+Main: 	
+	addi  a0, x0, 1      # Return 1;
+        la    a1, OlaMundo   # Carrega o endereço da string em a1
+        addi  a2, x0, 10     # Carrega o tamanho da string em a2
+        addi  a7, x0, 64     # printf
+        ecall                # Chamada do SO
+
+        addi    a0, x0, 0   # Return 0;
+        addi    a7, x0, 93  # Termina o programa
+        ecall               # Chamada do SO
+
+.data
+OlaMundo:      .ascii "Ola Mundo\n" #String Ola Mundo

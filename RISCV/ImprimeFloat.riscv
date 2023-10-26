@@ -1,0 +1,104 @@
+main:
+	# Leitura do número
+	li a7, 6      	# Código de chamada de sistema para ler float (6)
+	ecall	      	# Chamada do SO
+	
+	# Imprime o número lido
+	li a7, 2	# Código de chamada de sistema para imprimir float (2)
+	ecall
+	
+	fmv.s fs0, fa0
+	
+	la a0, /n
+	ecall
+	
+	#Quebra Linha
+    	la a0, QuebraL	
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	fmv.x.s a0, fs0
+    	srli a0, a0, 31
+    	
+    	beqz a0, positivo
+	
+	#printa sinal negativo
+    	la a0, negat
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	#exp
+    	fmv.x.s a0, fs0
+    	slli a0, a0, 1
+	srli a0, a0, 24
+	addi a0, a0, -127
+	li a7, 1
+	ecall
+	
+	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	j continue
+    	
+positivo:
+    	
+    	#printa sinal positivo
+    	la a0, posit
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	#exp
+    	fmv.x.s a0, fs0
+	srli a0, a0, 23
+	addi a0, a0, -127
+	li a7, 1
+	ecall
+	
+	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+	
+continue:
+
+	#mantissa
+    	fmv.x.s a0, fs0
+    	slli a0, a0, 9
+    	srli a0, a0, 9
+    	li a7, 34
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	# Return 0
+    	addi    a0, x0, 0   # Return 0;
+    	addi    a7, x0, 93  # Termina o programa
+    	ecall               # Chamada do SO
+
+.data
+	QuebraL:	.string "\n"
+	negat: 		.string "-"
+	posit:		.string "+"

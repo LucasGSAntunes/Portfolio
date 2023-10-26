@@ -1,0 +1,209 @@
+
+main:
+#Entrada de dados
+	# Leitura do primeiro número
+	li a7, 5      # Código de chamada de sistema para ler inteiro (5)
+	ecall	      # Chamada do SO
+	mv s0, a0     # Armazena o primeiro número em s0
+	
+    	# Leitura do segundo número
+	li a7, 5      # Código de chamada de sistema para ler inteiro (5)
+	ecall         # Chamada do SO
+	mv s1, a0     # Armazena o segundo número em s1
+	
+	# Leitura do terceiro número
+	li a7, 5      # Código de chamada de sistema para ler inteiro (5)
+	ecall         # Chamada do SO
+	mv s2, a0     # Armazena o terceiro número em s2
+	
+#Processamento e saída de dados
+	# Soma dos números em s0 e s1, armazena o resultado em s3
+    	add s3, s0, s1
+
+    	# Impressão do resultado: ADD
+        la    a0, soma        # Carrega o endereço da string em a0
+        li    a2, 4           # Carrega o tamanho da string em a2
+        li    a7, 4           # printf
+        ecall                 # Chamada do SO
+    	 
+    	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s3     # Coloca o resultado em a0
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	# Subtração dos números em s0 e s1, armazena o resultado em s3
+    	sub s3, s0, s1
+
+    	# Impressão do resultado: SUB
+        la  a0, subtracao    # Carrega o endereço da string em a0
+        li  a2, 4            # Carrega o tamanho da string em a2
+        li  a7, 4            # printf
+        ecall                # Chamada do SO
+    	
+    	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s3     # Coloca o resultado em a0
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	# AND dos números em s0 e s1, armazena o resultado em s3
+    	and s3, s0, s1
+
+    	# Impressão do resultado: AND
+        la  a0, AND          # Carrega o endereço da string em a0
+        li  a2, 4            # Carrega o tamanho da string em a2
+        li  a7, 4            # printf
+        ecall                # Chamada do SO
+    	
+    	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s3     # Coloca o resultado em a0
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	# OR dos números em s0 e s1, armazena o resultado em s3
+    	or s3, s0, s1
+
+    	# Impressão do resultado: OR
+        la  a0, OR          # Carrega o endereço da string em a0
+        li  a2, 3            # Carrega o tamanho da string em a2
+        li  a7, 4            # printf
+        ecall                # Chamada do SO
+    	
+    	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s3     # Coloca o resultado em a0
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	# XOR dos números em s0 e s1, armazena o resultado em s3
+    	xor s3, s0, s1
+
+    	# Impressão do resultado: XOR
+        la  a0, XOR          # Carrega o endereço da string em a0
+        li  a2, 4            # Carrega o tamanho da string em a2
+        li  a7, 4            # printf
+        ecall                # Chamada do SO
+    	
+    	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s3     # Coloca o resultado em a0
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	# MASK do número s2 e 31, armazena o resultado em s3
+    	andi s3, s2, 31
+
+    	# Impressão do resultado: MASK
+        la  a0, MASK         # Carrega o endereço da string em a0
+        li  a2, 5            # Carrega o tamanho da string em a2
+        li  a7, 4            # printf
+        ecall                # Chamada do SO
+    	
+    	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s3     # Coloca o resultado em a0
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	#s3 = MASK
+    	# SLL(mask) do número em s0, armazena o resultado em s4
+    	sll s4, s0, s3
+	
+    	# Impressão do resultado: SLL
+        la  a0, SLL0          # Carrega o endereço da string em a0
+        li  a2, 4            # Carrega o tamanho da string em a2
+        li  a7, 4            # printf
+        ecall                # Chamada do SO
+        
+        li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s3     # Coloca o resultado em a0
+    	ecall
+    	
+    	la  a0, SLL1          # Carrega o endereço da string em a0
+        li  a2, 2            # Carrega o tamanho da string em a2
+        li  a7, 4            # printf
+        ecall                # Chamada do SO
+    	
+    	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s4     # Coloca o resultado em a0
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+    	#s3 = MASK
+    	# SLL(mask) do número em s0, armazena o resultado em s4
+    	srl s4, s1, s3
+	
+    	# Impressão do resultado: SLL
+        la  a0, SRL0          # Carrega o endereço da string em a0
+        li  a2, 7            # Carrega o tamanho da string em a2
+        li  a7, 4            # printf
+        ecall                # Chamada do SO
+    	
+    	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s3     # Coloca o resultado em a0
+    	ecall
+    	
+    	la  a0, SRL1          # Carrega o endereço da string em a0
+        li  a2, 2            # Carrega o tamanho da string em a2
+        li  a7, 4            # printf
+        ecall                # Chamada do SO
+    	
+    	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s4     # Coloca o resultado em a0
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+    	
+# Return 0
+    	addi    a0, x0, 0   # Return 0;
+    	addi    a7, x0, 93  # Termina o programa
+    	ecall               # Chamada do SO
+    	
+.data
+	soma:      .string "ADD:" 	#String ADD
+	subtracao: .string "SUB:" 	#String SUB
+	AND:       .string "AND:" 	#String AND
+	OR:        .string "OR:" 	#String OR
+	XOR:       .string "XOR:" 	#String XOR
+	MASK:      .string "MASK:" 	#String MASK
+	SLL0:      .string "SLL(" 	#String SLL
+	SLL1:      .string "):" 	#String SLL
+	SRL0:      .string "SRL(" 	#String SRL
+	SRL1:      .string "):" 	#String SRL
+	QuebraL:   .string "\n"
+	

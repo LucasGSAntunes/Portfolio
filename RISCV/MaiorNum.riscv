@@ -1,0 +1,47 @@
+main:
+#Entrada de dados
+	# Leitura do primeiro número
+	li a7, 5      # Código de chamada de sistema para ler inteiro (5)
+	ecall	      # Chamada do SO
+	mv s0, a0     # Armazena o número de leituras em s0
+	
+	add s1, zero, zero 	# s1 = i = 0
+for:
+	beq s1, s0, done 	# se s1 = s0 termina o for
+	
+	bnez s1, cont
+	li a7, 5      		# Código de chamada de sistema para ler inteiro (5)
+	ecall	      		# Chamada do SO
+	mv s2, a0		# Se i=0 armazena o valor lio em s2
+	addi s1, s1, 1		# i++
+	j for
+		
+cont:	
+	li a7, 5		# Código de chamada de sistema para ler inteiro (5)
+	ecall
+	addi s1, s1, 1		# i++
+	
+	ble a0, s2, for		# Se o número lido é menor ou igual o anterior continua o laço 
+	mv s2, a0		# Se o número lido é maior, atualiza o valor de s2
+	j for
+	
+	
+	
+done:
+	li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    	mv a0, s2     # Coloca o resultado em a0
+    	ecall
+    	
+    	#Quebra Linha
+    	la a0, QuebraL
+    	li a1, 1
+    	li a7, 4
+    	ecall
+		
+	# Return 0
+    	addi    a0, x0, 0   # Return 0;
+    	addi    a7, x0, 93  # Termina o programa
+    	ecall               # Chamada do SO
+    	
+.data
+	QuebraL:	.string "\n"

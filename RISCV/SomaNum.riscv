@@ -1,0 +1,33 @@
+
+main:
+    li a7, 5      # Código de chamada de sistema para ler inteiro (5)
+    ecall
+    mv s0, a0     # Armazena o primeiro número em s0
+
+    # Leitura do segundo número
+    li a7, 5      # Código de chamada de sistema para ler inteiro (5)
+    ecall
+    mv s1, a0     # Armazena o segundo número em s1
+
+    # Soma dos números em s0 e s1, armazena o resultado em s2
+    add s2, s0, s1
+
+    # Impressão do resultado
+    li a7, 1      # Código de chamada de sistema para escrever inteiro (1)
+    mv a0, s2     # Coloca o resultado em a0
+    ecall
+    
+    la a0, QuebraLinha
+    li a1, 1
+    li a7, 4
+    ecall
+
+    # Encerrar o programa
+    addi    a0, x0, 0   # Return 0;
+    addi    a7, x0, 93  # Termina o programa
+    ecall               # Chamada do SO
+
+.data
+QuebraLinha:
+    .string "\n"
+
