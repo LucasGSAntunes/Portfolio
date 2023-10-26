@@ -1,2 +1,1 @@
-# Portfolio
-Portfolio de projetos pessoais
+# Portfólio pessoal
